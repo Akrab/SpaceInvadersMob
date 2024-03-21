@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a6f85ec7c8f164bb59671ce1619934, type: 3}
+  m_Name: RarityModels
+  m_EditorClassIdentifier: 
+  _rarityDatas:
+  - _name: Common
+    _rarity: 0
+    _color: {r: 0.17254902, g: 0.57254905, b: 0.9529412, a: 1}
+    _promoBg: {fileID: 21300000, guid: f34cd001841e7fb478eeef5bdd8e2a1d, type: 3}
+  - _name: Rare
+    _rarity: 1
+    _color: {r: 0.8745098, g: 0.38039216, b: 0.9372549, a: 1}
+    _promoBg: {fileID: 21300000, guid: b26c30ef7d260b34996f74567bc0e09b, type: 3}
+  - _name: Epic
+    _rarity: 2
+    _color: {r: 0.9882353, g: 0.6627451, b: 0.15686275, a: 1}
+    _promoBg: {fileID: 21300000, guid: 54eacff0100aa6e41bb852cf6af60702, type: 3}
