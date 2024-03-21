@@ -14,13 +14,14 @@ namespace ProtoGame.Extensions.UI
         private Vector3 _pressed, _released;
 
         private bool _scalesInited;
+
         protected override void Awake()
         {
             base.Awake();
             InitScales();
         }
 
-        void InitScales()
+        private void InitScales()
         {
             if (_scalesInited)
                 return;

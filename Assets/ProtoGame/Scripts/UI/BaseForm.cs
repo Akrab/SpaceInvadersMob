@@ -17,13 +17,7 @@ namespace ProtoGame.UI
 
     }
 
-    public interface IFormSetSize
-    {
-        void SetSize(Rect size);
-        void UpdateSize(Rect rectRoot);
-    }
-
-    public abstract class BaseForm<T> : MonoBehaviour, IForm, IFormSetSize where T : MonoBehaviour
+    public abstract class BaseForm<T> : MonoBehaviour, IForm where T : MonoBehaviour
     {
         private const float DURATION = 0.25f;
 
@@ -45,6 +39,12 @@ namespace ProtoGame.UI
             Setup();
         }
 
+
+        protected virtual void setup()
+        {
+
+        }
+
         public void Setup()
         {
             if (_isSetup)
@@ -52,11 +52,6 @@ namespace ProtoGame.UI
 
             setup();
             _isSetup = true;
-        }
-
-        protected virtual void setup()
-        {
-
         }
 
         public virtual Tween Hide(bool instance = false)
@@ -103,23 +98,13 @@ namespace ProtoGame.UI
             gameObject.SetActive(false);
             _isShow = false;
         }
+
         public void Enable()
         {
             _canvasGroup.alpha = 1;
             gameObject.SetActive(true);
             _isShow = true;
             _canvasGroup.interactable = true;
-        }
-
-        public void SetSize(Rect rectRoot)
-        {
-            _rectTransform.sizeDelta = rectRoot.size;
-            gameObject.transform.localPosition = Vector3.zero;
-        }
-
-        public void UpdateSize(Rect rectRoot)
-        {
-            _rectTransform.sizeDelta = rectRoot.size;
         }
 
     }

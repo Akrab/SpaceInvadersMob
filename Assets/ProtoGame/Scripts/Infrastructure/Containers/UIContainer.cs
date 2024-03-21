@@ -16,7 +16,6 @@ namespace ProtoGame.Infrastructure.Containers
         {
             _forms.TryGetValue(typeof(T), out var form);
             return (T)form;
-
         }
 
         public void RemoveForm<T>()

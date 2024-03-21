@@ -12,7 +12,6 @@ namespace ProtoGame.Services
 
             foreach ( var item in configContainer.Get<Rarity>().RarityDatas)
                 _models.Add(new RarityModel<RarityData>(item));
-           
         }
 
         public IReadOnlyList<IRarityModel> GetRarities()

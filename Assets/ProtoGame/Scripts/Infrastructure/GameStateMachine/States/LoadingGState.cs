@@ -1,5 +1,4 @@
 ﻿using UnityEngine.SceneManagement;
-using Zenject;
 
 namespace ProtoGame.Infrastructure.States
 {

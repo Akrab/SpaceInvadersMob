@@ -13,23 +13,6 @@ namespace ProtoGame.Infrastructure.Installers
     {
         [SerializeField] private ScriptableObject[] containers;
 
-        public override void InstallBindings()
-        {
-            Container.Bind<ConfigContainer>().FromNew().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<UIContainer>().AsSingle().NonLazy();
-            InstallECS();
-            InstallGameStateMachine();
-            InstallContainers();
-            InstallServices();
-            Container.BindInterfacesAndSelfTo<ProjectInstaller>().FromInstance(this).AsSingle();
-
-        }
-
-        public void Initialize()
-        {
-            StartApp();
-        }
-
         private void InstallECS()
         {
             var world = new EcsWorld();
@@ -62,11 +45,26 @@ namespace ProtoGame.Infrastructure.Installers
                 cc.Add(container);
 
         }
-
-
         private void StartApp()
         {
             Container.Resolve<IGameStateMachine>().EnterToState<MainMenuGState>();
+        }
+
+        public override void InstallBindings()
+        {
+            Container.Bind<ConfigContainer>().FromNew().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<UIContainer>().AsSingle().NonLazy();
+            InstallECS();
+            InstallGameStateMachine();
+            InstallContainers();
+            InstallServices();
+            Container.BindInterfacesAndSelfTo<ProjectInstaller>().FromInstance(this).AsSingle();
+
+        }
+
+        public void Initialize()
+        {
+            StartApp();
         }
     }
 }
