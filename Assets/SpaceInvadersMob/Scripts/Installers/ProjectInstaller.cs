@@ -34,8 +34,10 @@ namespace SpaceInvadersMob.Infrastructure.Installers
 
         private void InstallPools()
         {
-            Container.BindInterfacesAndSelfTo<ProjectileLinePool>().FromNew().AsSingle().WithArguments(2, 5).NonLazy();
-            Container.BindInterfacesAndSelfTo<ProjectileSpherePool>().FromNew().AsSingle().WithArguments(2, 5).NonLazy();
+            Container.Bind<ProjectileLinePool>().FromNew().AsSingle().WithArguments(2, 5).NonLazy();
+            Container.Bind<ProjectileSpherePool>().FromNew().AsSingle().WithArguments(2, 5).NonLazy();
+            Container.Bind<EnemyPool>().FromNew().AsSingle().NonLazy();
+            
         }
 
         private void InstallFabrics()
@@ -56,6 +58,8 @@ namespace SpaceInvadersMob.Infrastructure.Installers
             gStateMachine.AddState(Container.Instantiate<LoadingGState>());
             gStateMachine.AddState(Container.Instantiate<MainMenuGState>());
             gStateMachine.AddState(Container.Instantiate<GameGState>());
+            gStateMachine.AddState(Container.Instantiate<GameEndGState>());
+            gStateMachine.AddState(Container.Instantiate<PauseGState>());
         }
 
         private void InstallContainers()

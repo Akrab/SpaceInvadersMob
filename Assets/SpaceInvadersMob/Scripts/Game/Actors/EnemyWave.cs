@@ -1,7 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using SpaceInvadersMob.Game.Actors.Enemy;
+using SpaceInvadersMob.Infrastructure.Pools;
 using UnityEngine;
 using Zenject;
 
@@ -15,12 +14,14 @@ namespace SpaceInvadersMob.Game
     {
 
         [SerializeField] private EnemyPoint[] _points;
-        
-        
+
+        [Inject] private EnemyPool _enemyPool;
 
         public void Create()
         {
-            
+            foreach (var point in _points)
+                _enemyPool.Get(point.EnemyType).gameObject.transform.position = point.Position;
+
         }
         
         [Serializable]
@@ -28,9 +29,9 @@ namespace SpaceInvadersMob.Game
         {
             [SerializeField] private Transform _point;
             [SerializeField] private EnemyType _enemyType;
-            
-            
-            
+
+            public Vector3 Position => _point.position;
+            public EnemyType EnemyType => _enemyType;
         }
     }
 

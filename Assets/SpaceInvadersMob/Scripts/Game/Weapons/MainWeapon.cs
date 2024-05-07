@@ -1,6 +1,4 @@
 ﻿using SpaceInvadersMob.Infrastructure.Pools;
-using UnityEngine;
-using Zenject;
 
 namespace SpaceInvadersMob.Game.Weapons
 {

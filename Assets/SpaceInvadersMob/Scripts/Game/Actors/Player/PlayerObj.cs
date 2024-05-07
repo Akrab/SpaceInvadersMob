@@ -1,8 +1,10 @@
 ﻿using SpaceInvadersMob.Game.Weapons;
+using SpaceInvadersMob.Infrastructure;
 using SpaceInvadersMob.Infrastructure.Containers;
 using SpaceInvadersMob.Infrastructure.Controllers;
 using SpaceInvadersMob.Infrastructure.DataModel;
 using SpaceInvadersMob.Infrastructure.Pools;
+using SpaceInvadersMob.Infrastructure.States;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -27,7 +29,7 @@ namespace SpaceInvadersMob.Game.Actors.Player
         [Inject] private IInputController _inputController;
         [Inject] private ProjectileLinePool _projectileLinePool;
         [Inject] private IConfigContainer _configContainer;
-
+        [Inject] private IGameStateMachine _gameStateMachine;
         private Camera _camera;
         private Bounds _bounds;
         private IWeapon _weapon;
@@ -90,13 +92,6 @@ namespace SpaceInvadersMob.Game.Actors.Player
             _newPos = transform.position;
             _newPos.x = Mathf.Clamp(transform.position.x, leftPos, rightPos);
             transform.position = _newPos;
-
-            // transform.Translate(Vector2.one * Input.GetAxisRaw("Horizontal") * _speed * Time.deltaTime);
-            //
-            // _newPos = transform.position;
-            // _newPos.x = Mathf.Clamp(transform.position.x, leftPos, rightPos);
-            //
-            // transform.position = _newPos;
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -111,7 +106,12 @@ namespace SpaceInvadersMob.Game.Actors.Player
         {
             _currentLife -= value;
             if (_currentLife <= 0)
+            {
+                _weapon.Stop();
+                _gameStateMachine.EnterToState<GameEndGState>();
                 Destroy(gameObject);
+                
+            }
         }
     }
 }

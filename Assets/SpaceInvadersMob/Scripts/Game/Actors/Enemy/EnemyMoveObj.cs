@@ -6,12 +6,13 @@ namespace SpaceInvadersMob.Game.Actors.Enemy
     {
         [SerializeField]
         private float _moveSpeed = 3f;
-        private Camera _camera;
+
+        private bool _toRightMove = true;
+        
+        public override EnemyType EnemyType => EnemyType.Red;
         protected override void StatAction()
         {
-            if(_camera == null) _camera = Camera.main;
-            
-            
+
             
         }
     }

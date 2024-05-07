@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2733668371376501422
+--- !u!1 &178696850836760746
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3358997266818166645}
-  - component: {fileID: 8108399170757350953}
-  - component: {fileID: 3188146021061893343}
-  - component: {fileID: 7562388963855070134}
-  - component: {fileID: 630491318516297217}
+  - component: {fileID: 5734032127901988019}
+  - component: {fileID: 5059434945252755282}
+  - component: {fileID: 451933489093646474}
+  - component: {fileID: 6055346664476292081}
+  - component: {fileID: 4981892053236170635}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: EnemyRed
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3358997266818166645
+--- !u!4 &5734032127901988019
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2733668371376501422}
+  m_GameObject: {fileID: 178696850836760746}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.762943, y: 2.762943, z: 2.762943}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8108399170757350953
+--- !u!212 &5059434945252755282
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2733668371376501422}
+  m_GameObject: {fileID: 178696850836760746}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a654f552f093f0846805ab999ee5ac84, type: 3}
-  m_Color: {r: 0.34528297, g: 0.4453856, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.34509802, b: 0.44405913, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -87,13 +87,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &3188146021061893343
+--- !u!61 &451933489093646474
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2733668371376501422}
+  m_GameObject: {fileID: 178696850836760746}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -132,39 +132,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.29}
   m_EdgeRadius: 0
---- !u!114 &7562388963855070134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2733668371376501422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afba99910fcd4faaa4483a88641da4c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _life: 1
-  _damage: 10
-  _chanceLoot: 0
-  _lootChances:
-  - _chance: 50
-    _weaponType: 0
-  - _chance: 20
-    _weaponType: 1
-  - _chance: 5
-    _weaponType: 2
---- !u!50 &630491318516297217
+--- !u!50 &6055346664476292081
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2733668371376501422}
+  m_GameObject: {fileID: 178696850836760746}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 0.0001
   m_LinearDrag: 0
@@ -181,3 +159,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &4981892053236170635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178696850836760746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5994c367f54aa7841fe37e17c73a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _life: 3
+  _damage: 10
+  _chanceLoot: 0
+  _lootChances:
+  - _chance: 30
+    _weaponType: 2
+  - _chance: 40
+    _weaponType: 0
+  - _chance: 30
+    _weaponType: 1
+  _moveSpeed: 3

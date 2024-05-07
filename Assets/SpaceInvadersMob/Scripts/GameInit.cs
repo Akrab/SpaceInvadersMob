@@ -23,7 +23,7 @@ namespace SpaceInvadersMob.Infrastructure.Installers
         private void Update()
         {
             if (_waveIndex >= _enemyWaves.Length) return;
-            
+            _bounds = _camera.OrthographicBounds();
             if (_enemyWaves[_waveIndex].transform.position.y - _bounds.max.y < 2f)
             {
                 _container.Inject(_enemyWaves[_waveIndex]);
@@ -38,7 +38,7 @@ namespace SpaceInvadersMob.Infrastructure.Installers
             _camera.transform.position = _initCameraPos;
             var obj = _customPlayerFactory.Create(_playerSpawnPoint.position);
             _container.Inject(obj);
-            _bounds = _camera.OrthographicBounds();
+
         }
         
     }

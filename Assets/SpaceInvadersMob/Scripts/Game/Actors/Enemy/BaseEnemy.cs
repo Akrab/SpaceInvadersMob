@@ -8,6 +8,8 @@ namespace SpaceInvadersMob.Game.Actors.Enemy
     public interface IEnemyView
     {
         GameObject gameObject { get; }
+        EnemyType EnemyType { get; }
+        void AddReleaseCallback(Action<IEnemyView> release);
     }
     public abstract class BaseEnemy : MonoBehaviour, IDamage, IDamageValue, IEnemyView
     {
@@ -22,6 +24,8 @@ namespace SpaceInvadersMob.Game.Actors.Enemy
         
         [SerializeField]
         private LootChance[] _lootChances;
+
+        private Action<IEnemyView> _release;
 
         private void OnEnable()
         {
@@ -69,11 +73,16 @@ namespace SpaceInvadersMob.Game.Actors.Enemy
             {
                 var loot = CheckLoot();
                 if (CheckLoot() != WeaponType.None) DropLoot(loot);
-                Destroy(gameObject);
+                _release(this);
             }
         }
 
         public float DamageValue => _damage;
+        public abstract EnemyType EnemyType { get; }
+        public void AddReleaseCallback(Action<IEnemyView> release)
+        {
+            _release = release;
+        }
         
         [Serializable]
         private class LootChance
@@ -86,5 +95,7 @@ namespace SpaceInvadersMob.Game.Actors.Enemy
             public float Chance => _chance;
             public WeaponType WeaponType => _weaponType;
         }
+
+
     }
 }

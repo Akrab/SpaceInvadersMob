@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _finishPoint: {fileID: 522982403}
   _playerSpawnPoint: {fileID: 1996302687}
-  _camerRT: {fileID: 1682875149}
+  _camera: {fileID: 1682875148}
   _initCameraPos: {x: 0, y: 1, z: -10}
   _enemyWaves:
   - {fileID: 974135872}
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _points:
   - _point: {fileID: 1640294131}
-    _enemyType: -1
+    _enemyType: 0
   - _point: {fileID: 1631622186}
     _enemyType: 1
   - _point: {fileID: 1683305666}
