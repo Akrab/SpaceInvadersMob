@@ -6,14 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ProtoGame/Scenes/Lobby.unity
+    path: Assets/SpaceInvadersMob/Scenes/Lobby.unity
     guid: 1752371d733812643a1e8f5999ca3b57
   - enabled: 1
-    path: Assets/ProtoGame/Scenes/Loading.unity
+    path: Assets/SpaceInvadersMob/Scenes/Loading.unity
     guid: 8f259049d20bee9478c316c3d9262add
   - enabled: 1
-    path: Assets/ProtoGame/Scenes/UI.unity
+    path: Assets/SpaceInvadersMob/Scenes/UI.unity
     guid: 8802f5040c7ce28448db173e681837a8
+  - enabled: 1
+    path: Assets/SpaceInvadersMob/Scenes/Game.unity
+    guid: 0ea97942748c0754092a900d7e3c9041
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 751a650f2edb59d4798fa6f0fed9534f,
       type: 2}
