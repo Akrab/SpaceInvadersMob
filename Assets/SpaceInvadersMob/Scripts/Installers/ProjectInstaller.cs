@@ -28,11 +28,9 @@ namespace SpaceInvadersMob.Infrastructure.Installers
         {
             Container.BindInterfacesAndSelfTo<TimerController>().FromNew().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameTickable>().FromNew().AsSingle().NonLazy();
-            Container.BindInterfacesTo<InputController>().FromNew().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameCreatorController>().FromNew().AsSingle().NonLazy();
             Container.Bind<GamePauseController>().FromNew().AsSingle().NonLazy();
             Container.Bind<GameEndController>().FromNew().AsSingle().NonLazy();
-            
             Container.BindInterfacesAndSelfTo<GameRuntimeController>().FromNew().AsSingle().NonLazy();
             Container.Bind<GameRestartController>().FromNew().AsSingle().NonLazy();
 
