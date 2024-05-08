@@ -14,7 +14,7 @@ using Zenject;
 
 namespace SpaceInvadersMob.Infrastructure.Installers
 {
-    public class ProjectInstaller : MonoInstaller<ProjectInstaller>
+    public class ProjectInstaller : MonoInstaller<ProjectInstaller>, IInitializable
     {
         [SerializeField] private ScriptableObject[] containers;
         
@@ -30,6 +30,12 @@ namespace SpaceInvadersMob.Infrastructure.Installers
             Container.BindInterfacesAndSelfTo<GameTickable>().FromNew().AsSingle().NonLazy();
             Container.BindInterfacesTo<InputController>().FromNew().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameCreatorController>().FromNew().AsSingle().NonLazy();
+            Container.Bind<GamePauseController>().FromNew().AsSingle().NonLazy();
+            Container.Bind<GameEndController>().FromNew().AsSingle().NonLazy();
+            
+            Container.BindInterfacesAndSelfTo<GameRuntimeController>().FromNew().AsSingle().NonLazy();
+            Container.Bind<GameRestartController>().FromNew().AsSingle().NonLazy();
+
         }
 
         private void InstallPools()
@@ -84,9 +90,12 @@ namespace SpaceInvadersMob.Infrastructure.Installers
 
             InstallPools();
             Container.BindInterfacesAndSelfTo<ProjectInstaller>().FromInstance(this).AsSingle();
-
-
+            
         }
 
+        public void Initialize()
+        {
+            // TODO
+        }
     }
 }

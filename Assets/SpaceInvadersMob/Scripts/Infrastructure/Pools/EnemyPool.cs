@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SpaceInvadersMob.Game.Actors.Enemy;
+using SpaceInvadersMob.Infrastructure.Controllers;
 using SpaceInvadersMob.Infrastructure.Factory;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -13,6 +14,7 @@ namespace SpaceInvadersMob.Infrastructure.Pools
     public class EnemyPool
     {
         [Inject] private EnemyFactory _enemyFactory;
+        [Inject] private IGameRuntimeController _gameRuntimeController;
         
         private Dictionary<EnemyType, ObjectPool<IEnemyView>>
             _pools = new Dictionary<EnemyType, ObjectPool<IEnemyView>>();
@@ -38,14 +40,15 @@ namespace SpaceInvadersMob.Infrastructure.Pools
         private IEnemyView CreateFunc(EnemyType enemyType)
         {
             var newEnemy = _enemyFactory.Create(Vector3.zero, enemyType);
-
-            newEnemy.AddReleaseCallback(Release);
             return newEnemy;
         }
 
         public IEnemyView Get(EnemyType enemyType)
         {
-            return _pools[enemyType].Get();
+            var e =  _pools[enemyType].Get();
+            _gameRuntimeController.AddObj(e as IRuntimeObj);
+            e.AddReleaseCallback(Release);
+            return e;
         }
 
         public void Release(IEnemyView view)

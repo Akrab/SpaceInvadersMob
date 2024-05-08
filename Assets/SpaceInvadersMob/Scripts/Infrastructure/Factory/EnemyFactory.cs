@@ -13,11 +13,13 @@ namespace SpaceInvadersMob.Infrastructure.Factory
     public class CustomEnemyFactory : IFactory<Vector3, EnemyType, IEnemyView>
     {
         [Inject] private IGameResourceService _gameResourceService;
-        
+        [Inject] private DiContainer _diContainer;
         public IEnemyView Create(Vector3 pos, EnemyType enemyType)
         {
             var prefab =_gameResourceService.LoadEnemy(enemyType);
-            return Object.Instantiate(prefab, pos, Quaternion.identity).GetComponent<IEnemyView>();
+            var view = Object.Instantiate(prefab, pos, Quaternion.identity).GetComponent<IEnemyView>();
+            _diContainer.Inject(view);
+            return view;
         }
     }
 }

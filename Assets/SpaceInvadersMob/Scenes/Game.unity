@@ -171,6 +171,7 @@ MonoBehaviour:
   _playerSpawnPoint: {fileID: 1996302687}
   _camera: {fileID: 1682875148}
   _initCameraPos: {x: 0, y: 1, z: -10}
+  _cameraMove: {fileID: 1682875150}
   _enemyWaves:
   - {fileID: 974135872}
   - {fileID: 277871478}
@@ -761,6 +762,7 @@ GameObject:
   - component: {fileID: 1682875149}
   - component: {fileID: 1682875148}
   - component: {fileID: 1682875147}
+  - component: {fileID: 1682875150}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -842,6 +844,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1682875150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682875146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ae68dec4f241efbca6c679f3dd60a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1683305665
 GameObject:
   m_ObjectHideFlags: 0

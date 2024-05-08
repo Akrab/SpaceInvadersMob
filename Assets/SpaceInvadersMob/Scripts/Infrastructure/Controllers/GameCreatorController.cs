@@ -9,6 +9,7 @@ namespace SpaceInvadersMob.Infrastructure.Controllers
     {
         [Inject] private DiContainer _diContainer;
 
+        private Scene _scene;
         public GameCreatorController()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
@@ -17,11 +18,16 @@ namespace SpaceInvadersMob.Infrastructure.Controllers
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             if (scene.name != CONSTANTS.GAME_SCENE) return;
+            _scene = scene;
+            StartGame();
 
+        }
+
+        public void StartGame()
+        {
             using var pooledObject = UnityEngine.Pool.ListPool<GameObject>.Get(out var rootGameObjects);
-            scene.GetRootGameObjects(rootGameObjects);
-
-       
+            _scene.GetRootGameObjects(rootGameObjects);
+            
             foreach (var obj in rootGameObjects)
             {
                 var gameInit = obj.GetComponent<GameInit>();
@@ -35,6 +41,7 @@ namespace SpaceInvadersMob.Infrastructure.Controllers
 
             }
         }
+        
 
     }
 }

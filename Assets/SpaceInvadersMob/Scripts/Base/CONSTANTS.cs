@@ -14,5 +14,10 @@ namespace SpaceInvadersMob
         public const string ENEMY_PREFAB = "Game/Enemy";
         
         public const string ENEMY_TAG = "Enemy";
+        public const string WEAPON_LOOT_TAG = "Loot";
+
+
+
+        public const int MESSAGE_KILL_ENEMY = 0;
     }
 }

@@ -1,30 +1,27 @@
 ﻿using System;
 using SpaceInvadersMob.Game.Actors;
+using SpaceInvadersMob.Infrastructure.Controllers;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace SpaceInvadersMob.Game.Projectiles
 {
-    public abstract class BaseProjectile<T> : MonoBehaviour where T : class
+    public abstract class BaseProjectile<T> : MonoBehaviour, IRuntimeObj where T : class
     {
+        [Inject] private GameTickable _gameTickable;
         
         [SerializeField, Range(1, 100)] private float _speed;
         [SerializeField, Range(0.1f, 1000)] private float _damage;
-        private Action<T> _onReturn;      
+        
+        private Action<T> _onRelease;      
         private CompositeDisposable _lifeDisposable;
-
-        protected void OnEnable()
-        {
-            _lifeDisposable = new CompositeDisposable();
-            Observable.EveryUpdate().Subscribe(Move).AddTo(_lifeDisposable);
-            Observable.Timer(System.TimeSpan.FromSeconds(1))
-                .Subscribe(_ => { Dispose(); }).AddTo(_lifeDisposable);
-        }
-
+        private Camera _camera;
+        
         private void Dispose()
         {
             _lifeDisposable.Dispose();
-            _onReturn.Invoke(this as T);
+            _onRelease?.Invoke(this as T);
         }
         private void OnCollisionEnter2D(Collision2D other)
         {
@@ -36,15 +33,31 @@ namespace SpaceInvadersMob.Game.Projectiles
             }
         }
         
-        protected virtual void Move(long t)
+        protected virtual void Move()
         {
             transform.Translate(Vector2.up * _speed * Time.deltaTime );
+            if(transform.position.y > _camera.OrthographicBounds().max.y + 2f)  Dispose();
         }
 
-        public void OnReturn(Action<T> onReturn)
+        public void OnRelease(Action<T> onRelease)
         {
-            _onReturn = onReturn;
+            _onRelease = onRelease;
         }
 
+        public void OnFire()
+        {
+            _camera = Camera.main;
+            if (_lifeDisposable != null)
+                _lifeDisposable.Dispose();
+
+            _lifeDisposable = new CompositeDisposable();
+            _gameTickable.ReactiveCommand.Subscribe(_ => Move()).AddTo(_lifeDisposable);
+        
+        }
+
+        public void Release()
+        {
+            Dispose();
+        }
     }
 }

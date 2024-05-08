@@ -209,12 +209,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _boxCollider2D: {fileID: 5296193570614655946}
+  _rigidbody2D: {fileID: 0}
   _projectileSpawnPoints:
   - {fileID: 5086962295647822302}
   - {fileID: 6885839895404452568}
   - {fileID: 5123700410286822657}
-  _speed: 10
-  _verticalSpeed: 2
+  _life: 5
 --- !u!1 &8295394022786976065
 GameObject:
   m_ObjectHideFlags: 0

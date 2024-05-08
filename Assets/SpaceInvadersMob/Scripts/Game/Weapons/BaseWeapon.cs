@@ -1,4 +1,4 @@
-﻿using System;
+﻿using SpaceInvadersMob.Infrastructure;
 using UniRx;
 using UnityEngine;
 
@@ -12,10 +12,10 @@ namespace SpaceInvadersMob.Game.Weapons
 
     public abstract class BaseWeapon : IWeapon
     {
-        // [SerializeField, Range(0.1f, 10f)] private float _fireRate = 0.5f;
+        [SerializeField] private WeaponType _weaponType;
+        private CompositeDisposable _fireDisposables;
+        protected bool _isSkip = false;
         protected Transform[] _spawnPoints;
-        private CompositeDisposable _fireDisposables = new CompositeDisposable();
-        
         protected virtual void CreateProjectile()
         {
 
@@ -31,9 +31,21 @@ namespace SpaceInvadersMob.Game.Weapons
         {
             Stop();
             _fireDisposables = new CompositeDisposable();
+            
+            MessageBroker.Default
+                .Receive<MessageOnPauseGame>() 
+                .Subscribe(msg =>
+                {
+                    _isSkip = msg.Data;
+                }).AddTo (_fireDisposables);
+        
             Observable.Timer(System.TimeSpan.FromSeconds(1f))
                 .Repeat()
-                .Subscribe(_ => { CreateProjectile(); }).AddTo(_fireDisposables);
+                .Subscribe(_ =>
+                {
+                    if(_isSkip) return;
+                    CreateProjectile();
+                }).AddTo(_fireDisposables);
         }
 
         public void Stop()

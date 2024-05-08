@@ -175,10 +175,10 @@ MonoBehaviour:
   _damage: 10
   _chanceLoot: 0
   _lootChances:
-  - _chance: 30
+  - _chance: 50
     _weaponType: 2
-  - _chance: 40
+  - _chance: 20
     _weaponType: 0
-  - _chance: 30
+  - _chance: 40
     _weaponType: 1
   _moveSpeed: 3

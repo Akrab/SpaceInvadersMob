@@ -1,5 +1,6 @@
 using System;
 using SpaceInvadersMob.Game.Actors.Enemy;
+using SpaceInvadersMob.Infrastructure.Controllers;
 using SpaceInvadersMob.Infrastructure.Pools;
 using UnityEngine;
 using Zenject;
@@ -16,11 +17,14 @@ namespace SpaceInvadersMob.Game
         [SerializeField] private EnemyPoint[] _points;
 
         [Inject] private EnemyPool _enemyPool;
+        public int Count => _points.Length;
 
         public void Create()
         {
             foreach (var point in _points)
+            {
                 _enemyPool.Get(point.EnemyType).gameObject.transform.position = point.Position;
+            }
 
         }
         

@@ -12,7 +12,7 @@ namespace SpaceInvadersMob.Infrastructure.Controllers
 
     public interface IInputController
     {
-        ReactiveProperty<float> MoveInputEvent { get; }
+        float MoveInputEvent { get; }
 
     }
 
@@ -21,9 +21,9 @@ namespace SpaceInvadersMob.Infrastructure.Controllers
 
         private IInput _input;
 
-        private ReactiveProperty<float> _moveInputEvent = new();
+        private float _moveInputEvent;
 
-        public ReactiveProperty<float> MoveInputEvent => _moveInputEvent;
+        public float MoveInputEvent => _moveInputEvent;
 
         public InputController()
         {
@@ -31,7 +31,7 @@ namespace SpaceInvadersMob.Infrastructure.Controllers
             _input = new KeyboardInput();
 #endif
 
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID && UNITY_EDITOR
             _input = new TouchInput();
 #endif
 
@@ -39,7 +39,7 @@ namespace SpaceInvadersMob.Infrastructure.Controllers
 
         public void Tick()
         {
-            _moveInputEvent.Value = _input.Get();
+            _moveInputEvent = _input.Get();
         }
 
     }
